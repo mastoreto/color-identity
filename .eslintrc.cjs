@@ -17,10 +17,35 @@ const config = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: path.join(__dirname, "tsconfig.json"),
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      tsx: true,
+    },
   },
-  plugins: ["@typescript-eslint"],
-  extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  env: {
+    browser: true,
+    node: true,
+    es2020: true,
+  },
+  plugins: ["@typescript-eslint",'react', 'react-hooks', 'jsx-a11y', 'import', 'prettier'],
+  extends: [
+  "next/core-web-vitals", 
+  "plugin:@typescript-eslint/recommended",
+  "eslint:recommended",
+  "plugin:react/recommended",
+  "plugin:react-hooks/recommended",
+  "plugin:jsx-a11y/recommended",
+  "plugin:import/errors",
+  "plugin:import/warnings",
+  "plugin:prettier/recommended",
+  "plugin:@typescript-eslint/recommended",
+  "plugin:@typescript-eslint/eslint-recommended",
+  "prettier/@typescript-eslint"],
   rules: {
+    'prettier/prettier': 'error',
+    'react/prop-types': 'off', // Puedes activar esta regla si quieres usar PropTypes
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       {
@@ -29,6 +54,11 @@ const config = {
       },
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
 

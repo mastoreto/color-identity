@@ -1,19 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { type NextPage } from "next";
 import Head from "next/head";
 // import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { SpinnerCircular } from 'spinners-react';
 
 import { api } from "@utils/api";
 import ColorCard from "@components/ColorCard";
-import { it } from "node:test";
 
-interface ChatItem {
+interface PaletteItems {
   colorName: string;
   colorHexa: string;
   colorOrder: number;
@@ -23,7 +18,7 @@ const Home: NextPage = () => {
   const { data: sessionData } = useSession();
 
   const [color, setColor] = useState<string>("");
-  const [palette, setPalette] = useState<ChatItem[]>([]);
+  const [palette, setPalette] = useState<PaletteItems[]>([]);
 
   const generatePalletteMutation = api.palette.createPaletteByColor.useMutation({
     onSuccess: (data) => {
@@ -33,12 +28,7 @@ const Home: NextPage = () => {
       console.log(error);
     }
   });
-  
-  useEffect(() => {
-    if (palette) {
-      console.log(palette);
-    }
-  }, [palette]);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setColor(e.target.value);
@@ -47,6 +37,16 @@ const Home: NextPage = () => {
   const handelSubmit = () => {
     generatePalletteMutation.mutate({color});
   };
+
+  const generatePallette: JSX.Element = () => {
+    return generatePalletteMutation.isLoading ?
+    <SpinnerCircular size={70} thickness={100} speed={100} color="#36ad47" secondaryColor="rgba(0, 0, 0, 1)" />
+    :
+      palette.length > 0 && palette.map((item) => (
+        <ColorCard key={item.colorOrder} colorName={item.colorName} colorHex={item.colorHexa} />
+      ))
+  };
+
 
   return (
     <>
@@ -76,11 +76,7 @@ const Home: NextPage = () => {
              />
            </div>
            <div className="flex flex-row w-full justify-center">
-           {
-            palette.length > 0 ? palette.map((item) => (
-              <ColorCard key={item.colorOrder} colorName={item.colorName} colorHex={item.colorHexa} />
-            )) : null
-           }
+           {generatePallette()}
            </div>
          </section>
         )}
