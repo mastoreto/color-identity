@@ -28,10 +28,17 @@ V2
 **Server:** tRCP, Prisma, NextAuth, SupaBase, OpenAI
 
 
-## Authors
+## Author
 
 - [@mastoreto](https://www.github.com/mastoreto)
 
+## Contributors 
+
+<a href="https://github.com/mastoreto/color-identity/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=mastoreto/color-identity" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 ## License
 
