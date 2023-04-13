@@ -1,5 +1,5 @@
 
-# Identity Color
+# Color Identity
 
 This side project aims to cover the process of creating color palettes for your projects using AI.
 
