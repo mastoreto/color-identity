@@ -24,7 +24,7 @@ interface Palette {
 const Home: NextPage = () => {
   const { data: sessionData } = useSession();
 
-  const [color, setColor] = useState<string>("");
+  const [color, setColor] = useState<string>({});
   const [palette, setPalette] = useState<Palette>({
     primary: [],
     secondary: [],

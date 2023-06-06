@@ -5,9 +5,9 @@ This side project aims to cover the process of creating color palettes for your 
 
 This project was incubated in the indie creators community.
 
-Github - [Indie Creators](https://github.com/Indie-Creator-Community)
+Github - [Indie Creators HQ](https://github.com/Indie-Creator-Community)
 
-Discord - [Link]
+Discord - [Operation Center](https://discord.gg/77guznJ8mZ)
 
 
 ## Features
